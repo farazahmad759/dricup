@@ -1,0 +1,25 @@
+{
+  "tableName": "files",
+  "fields": [
+    {
+      "title": "title",
+      "type": "string"
+    },
+    {
+      "title": "description",
+      "type": "string"
+    },
+    {
+      "title": "path",
+      "type": "string"
+    },
+    {
+      "title": "content",
+      "type": "text"
+    },
+    {
+      "title": "content_type",
+      "type": "string"
+    }
+  ]
+}

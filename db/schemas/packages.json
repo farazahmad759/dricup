@@ -1,0 +1,37 @@
+{
+  "tableName": "packages",
+  "fields": [
+    {
+      "title": "title",
+      "type": "string"
+    },
+    {
+      "title": "description",
+      "type": "string"
+    },
+    {
+      "title": "npm_command",
+      "type": "string"
+    },
+    {
+      "title": "npm_url",
+      "type": "text"
+    },
+    {
+      "title": "github_url",
+      "type": "string"
+    },
+    {
+      "title": "belongs_to",
+      "type": "string"
+    },
+    {
+      "title": "type",
+      "type": "string"
+    },
+    {
+      "title": "tags",
+      "type": "text"
+    }
+  ]
+}
