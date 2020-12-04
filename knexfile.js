@@ -1,25 +1,44 @@
+// Update with your config settings.
 const Knex = require("knex");
+let development_local = {
+  client: "mysql",
+  connection: {
+    host: "127.0.0.1",
+    database: "dricup_v1",
+    user: "root",
+    password: "",
+  },
+  migrations: {
+    directory: __dirname + "/db/migrations",
+  },
+  seeds: {
+    directory: __dirname + "/db/seeds/development",
+  },
+};
+let development_remote = {
+  client: "mysql",
+  connection: {
+    host: "134.122.25.137",
+    database: "dricup_v1",
+    user: "blogposts-v1",
+    password: "9c7bddbcfe94c3e9dbb2139fba2fef1123913a8703db7f7d",
+  },
+  migrations: {
+    directory: __dirname + "/db/migrations",
+  },
+  seeds: {
+    directory: __dirname + "/db/seeds/development",
+  },
+};
 
 var knexConfig = {
-  development: {
-    client: "mysql",
-    connection: {
-      host: "127.0.0.1",
-      database: "express-test-app",
-      user: "root",
-      password: "password",
-    },
-    migrations: {
-      directory: __dirname + "/db/migrations",
-    },
-    seeds: {
-      directory: __dirname + "/db/seeds/development",
-    },
-  },
+  development:
+    process.env.NEXT_PUBLIC_ENV == "remote"
+      ? development_remote
+      : development_local,
   staging: {
-    client: "mysql",
+    client: "postgresql",
     connection: {
-      host: "127.0.0.1",
       database: "my_db",
       user: "username",
       password: "password",
@@ -40,9 +59,8 @@ var knexConfig = {
   },
 
   production: {
-    client: "mysql",
+    client: "postgresql",
     connection: {
-      host: "127.0.0.1",
       database: "my_db",
       user: "username",
       password: "password",
