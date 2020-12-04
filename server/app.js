@@ -20,8 +20,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(express.static(path.join(__dirname, "../client/apps")));
+app.use(express.static(path.join(__dirname, "../client/home")));
 app.get("/", (req, res) => {
-  res.send("Index route");
+  res.sendFile(path.join(__dirname, "../client/home", "index.html"));
 });
 app.get("/static-html", function (req, res) {
   res.sendFile(

@@ -13,9 +13,11 @@
     "mig": "npx sequelize-cli db:migrate:undo:all & npx sequelize-cli db:migrate & npx sequelize-cli db:seed:undo:all",
     "migseed": "npx sequelize-cli db:migrate:undo:all & npx sequelize-cli db:migrate & npx sequelize-cli db:seed:undo:all & npx sequelize-cli db:seed:all",
     "git:merge-dev-into-main": "git checkout main && git merge dev && git push origin && git checkout dev",
-    "git:merge-main-into-prod": "git checkout prod && git merge main && git push origin && git checkout dev"
+    "git:merge-main-into-v1": "git checkout v1 && git merge main && git push origin && git checkout dev",
+    "git:merge-v1-into-prod": "git checkout prod && git merge v1 && git push origin && git checkout dev"
   },
   "dependencies": {
+    "autoprefixer": "^10.0.4",
     "axios": "^0.20.0",
     "body-parser": "^1.19.0",
     "concurrently": "^5.3.0",
@@ -35,6 +37,8 @@
     "morgan": "^1.9.1",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.6",
-    "objection": "^2.2.3"
+    "objection": "^2.2.3",
+    "postcss": "^8.1.14",
+    "tailwindcss": "^2.0.1"
   }
 }
