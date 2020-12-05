@@ -454,6 +454,7 @@
 
     <script src="./node_modules/jszip/dist/jszip.js"></script>
     <script src="./node_modules/file-saver/dist/FileSaver.js"></script>
+    <script src="./node_modules/axios/dist/axios.js"></script>
     <script src="./dist/js/config.js"></script>
     <script>
       function prepareStarter() {}
@@ -470,7 +471,10 @@
           saveAs(content, "archive.zip");
         });
       }
-      downloadStarter();
+      axios.get("http://localhost:3000/users").then((res) => {
+        console.log(res);
+      });
+      // downloadStarter();
     </script>
   </body>
 </html>

@@ -1,7 +1,7 @@
 
   const models = require('../models/index.js');
-  const dbModel = models.File;
-  const modelName = 'File';
+  const dbModel = models.Template;
+  const modelName = 'Template';
 
   /** 
    * ====================================================
@@ -193,16 +193,24 @@
           _res = _res.where('description', 'like', '%' + req.query.description + '%')
         }
         
-        if(req.query.path) {
-          _res = _res.where('path', 'like', '%' + req.query.path + '%')
+        if(req.query.before_instructions) {
+          _res = _res.where('before_instructions', 'like', '%' + req.query.before_instructions + '%')
         }
         
-        if(req.query.content) {
-          _res = _res.where('content', 'like', '%' + req.query.content + '%')
+        if(req.query.instructions) {
+          _res = _res.where('instructions', 'like', '%' + req.query.instructions + '%')
         }
         
-        if(req.query.content_type) {
-          _res = _res.where('content_type', 'like', '%' + req.query.content_type + '%')
+        if(req.query.after_instructions) {
+          _res = _res.where('after_instructions', 'like', '%' + req.query.after_instructions + '%')
+        }
+        
+        if(req.query.tags) {
+          _res = _res.where('tags', 'like', '%' + req.query.tags + '%')
+        }
+        
+        if(req.query.created_by) {
+          _res = _res.where('created_by', 'like', '%' + req.query.created_by + '%')
         }
         
         _res = await _res;

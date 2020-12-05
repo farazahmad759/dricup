@@ -6,6 +6,9 @@ var logger = require("morgan");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
+var filesRouter = require("./db/routes/files");
+var packagesRouter = require("./db/routes/packages");
+var templatesRouter = require("./db/routes/templates");
 
 var app = express();
 
@@ -44,6 +47,9 @@ if (process.env.NODE_ENV === "production") {
   app.use("/app-1", indexRouter);
 }
 app.use("/users", usersRouter);
+app.use("/api/files", filesRouter);
+app.use("/api/packages", packagesRouter);
+app.use("/api/templates", templatesRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

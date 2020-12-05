@@ -1,5 +1,5 @@
 
-  var controller = require('../db/controllers/files');
+  var controller = require('../controllers/packages');
   var express = require('express');
   var router = express.Router();
 
