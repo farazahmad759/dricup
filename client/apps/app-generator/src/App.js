@@ -11,7 +11,7 @@ function App() {
   const [generatorConfig, setGeneratorConfig] = useState({});
   useEffect(() => {});
   const downloadProject = () => {
-    axios.get("http://localhost:8000/api/files").then((res) => {
+    axios.get("http://localhost:3000/api/files").then((res) => {
       let files = res.data.data;
       if (files) {
         var zip = new JSZip();
@@ -22,6 +22,9 @@ function App() {
           );
           zip.file(file.path, _content);
         });
+        zip.folder("server/public/images");
+        zip.folder("server/public/javascripts");
+        zip.folder("client/apps");
         zip.generateAsync({ type: "blob" }).then(function (content) {
           saveAs(content, "archive.zip");
         });
@@ -34,12 +37,12 @@ function App() {
       content,
       options
     );
-    _content = `
-    {
-      "hello": "hi",
-      ${options.knex && '"knex": "1.2.3"'}
-    }
-    `;
+    // _content = `
+    // {
+    //   "hello": "hi",
+    //   ${options.knex && '"knex": "1.2.3"'}
+    // }
+    // `;
     return _content;
   }
 

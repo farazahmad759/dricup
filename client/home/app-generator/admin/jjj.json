@@ -1,0 +1,72 @@
+{
+    "autoprefixer":true,
+    "axios" : true,
+    "body_parser": true,
+    "concurrently": true,
+    "config": true,
+    "cookie_parser":true,
+    "cors":true,
+    "debug": true,
+    "dotenv": true,
+    "express":true,
+    "express_validator": true,
+    "hbs": true,
+    "helmet": true,
+    "http_errors": true,
+    "jade": true,
+    "jsonwebtoken": true,
+    "knex": true,
+    "morgan": true,
+    "mysql": true,
+    "nodemon": true,
+    "objection": true,
+    "postcss": true,
+    "tailwind": false
+}
+
+
+
+{
+    "name": "new-roject",
+    "version": "0.0.1",
+    "private": false,
+    "main": "index.js",
+    "scripts": {
+      "start": "node index.js",
+      "test": "echo \\\"Error: no test specified\\\" && exit 1",
+      "server": "nodemon index.js",
+      "client": "cd client/apps/app-1 && npm run start",
+      "build": "cd client/apps/app-1 && npm install && npm run build",
+      "mig:up-all": "i=0; while [ $i -le 5 ]; do knex migrate:up; i=$((i+1)); done",
+      "mig:down-all": "i=0; while [ $i -le 5 ]; do knex migrate:down; i=$((i+1)); done",
+      "dev": "concurrently --kill-others-on-fail \\\"npm run server\\\" \\\"npm run client\\\"",
+      "git:merge-dev-into-main": "git checkout main && git merge dev && git push origin && git checkout dev",
+      "git:merge-main-into-v1": "git checkout v1 && git merge main && git push origin && git checkout dev",
+      "git:merge-v1-into-prod": "git checkout prod && git merge v1 && git push origin && git checkout dev"
+    },
+    "dependencies": {
+      ${options.autoprefixer ?'"autoprefixer": "^10.0.4"':''},
+      ${options.axios ? '"axios": "^0.20.0"' : ''},
+      ${options.body_parser ? '"body-parser": "^1.19.0"': ''},
+      ${options.concurrently ? '"concurrently": "^5.3.0"' : ''},
+      ${options.config ? '"config": "^3.3.1"': ''},
+      ${options.cookie_parser ? '"cookie-parser": "~1.4.4"': ''},
+      ${options.cors ? '"cors": "^2.8.5"': ''},
+      ${options.debug ? '"debug": "~2.6.9"': ''},
+      ${options.dotenv ? '"dotenv": "^8.2.0"' : ''},
+      ${options.express ? '"express": "~4.16.1"' : ''},
+      ${options.express_validator ? '"express-validator": "^6.6.0"' : ''},
+      ${options.hbs ? '"hbs": "^4.1.1"' : ''},
+      ${options.helmet ? '"helmet": "^3.23.3"' : ''},
+      ${options.http_errors ? '"http-errors": "~1.6.3"' : ''},
+      ${options.jade ? '"jade": "~1.11.0"' : ''},
+      ${options.jsonwebtoken ? '"jsonwebtoken": "^8.5.1"' : ''},
+      ${options.knex ? '"knex": "^0.21.12"' : ''},
+      ${options.morgan ? '"morgan": "^1.9.1"' : ''},
+      ${options.mysql ? '"mysql": "^2.18.1"' : ''},
+      ${options.nodemon ? '"nodemon": "^2.0.6"' : ''},
+      ${options.objection ? '"objection": "^2.2.3"' : ''},
+      ${options.postcss ? '"postcss": "^8.1.14"' : ''},
+      ${options.tailwind ? '"tailwindcss": "^2.0.1"' : ''}
+    }
+  }
