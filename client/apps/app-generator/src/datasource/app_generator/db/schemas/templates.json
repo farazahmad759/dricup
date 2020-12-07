@@ -1,0 +1,33 @@
+{
+  "tableName": "templates",
+  "fields": [
+    {
+      "title": "title",
+      "type": "string"
+    },
+    {
+      "title": "description",
+      "type": "string"
+    },
+    {
+      "title": "before_instructions",
+      "type": "string"
+    },
+    {
+      "title": "instructions",
+      "type": "text"
+    },
+    {
+      "title": "after_instructions",
+      "type": "string"
+    },
+    {
+      "title": "tags",
+      "type": "string"
+    },
+    {
+      "title": "created_by",
+      "type": "integer"
+    }
+  ]
+}

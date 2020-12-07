@@ -1,22 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import JSZip from "jszip";
+import saveAs from "file-saver";
+import { useEffect, useState } from "react";
+// var zip = new JSZip();
+
+import "./App.css";
 
 function App() {
+  const [page, setPage] = useState(null);
+  useEffect(() => {});
+  const downloadProject = () => {
+    var zip = new JSZip();
+    zip.file("package.json", "hello");
+    zip.generateAsync({ type: "blob" }).then(function (content) {
+      saveAs(content, "archive.zip");
+    });
+  };
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <button onClick={downloadProject}>Download</button>
       </header>
     </div>
   );
