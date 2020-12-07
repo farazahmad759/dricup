@@ -457,6 +457,8 @@
     <script src="./node_modules/axios/dist/axios.js"></script>
     <script src="./dist/js/config.js"></script>
     <script>
+      downloadStarter();
+
       function prepareStarter() {}
       function downloadStarter() {
         var zip = new JSZip();
@@ -488,7 +490,6 @@
         //   saveAs(content, "archive.zip");
         // });
       }
-      downloadStarter();
 
       function generateContent(options, content) {
         let _content = "`" + content + "`";
