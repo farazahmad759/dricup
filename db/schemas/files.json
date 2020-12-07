@@ -18,6 +18,10 @@
       "type": "text"
     },
     {
+      "title": "content_vars",
+      "type": "json"
+    },
+    {
       "title": "content_type",
       "type": "string"
     }

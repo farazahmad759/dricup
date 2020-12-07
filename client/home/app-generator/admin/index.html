@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>App Generator - Admin</title>
     <style type="text/css" media="screen">
+      #content_vars {
+        width: 100%;
+        min-height: 400px;
+      }
       #content {
         width: 100%;
         min-height: 800px;
@@ -23,6 +27,7 @@
         <option value="static">Static</option>
       </select>
       <button onclick="submitFile();">Submit</button>
+      <div id="content_vars"></div>
       <div id="content"></div>
     </div>
 
@@ -33,9 +38,12 @@
     ></script>
     <script src="./../../node_modules/axios/dist/axios.js"></script>
     <script>
-      let editor = ace.edit("content");
-      editor.setTheme("ace/theme/monokai");
-      editor.session.setMode("ace/mode/javascript");
+      let editor_content = ace.edit("content");
+      editor_content.setTheme("ace/theme/monokai");
+      editor_content.session.setMode("ace/mode/javascript");
+      let editor_content_vars = ace.edit("content_vars");
+      editor_content_vars.setTheme("ace/theme/monokai");
+      editor_content_vars.session.setMode("ace/mode/javascript");
       function submitFile() {
         let fileForm = {};
         fileForm.elements = {};
@@ -48,7 +56,8 @@
         fileForm.elements.content_type = document.getElementById(
           "content_type"
         );
-        fileForm.elements.content = editor;
+        fileForm.elements.content = editor_content;
+        fileForm.elements.content_vars = editor_content_vars;
 
         // extract data from elements
         fileForm.data.title = fileForm.elements.title.value;
@@ -56,6 +65,7 @@
         fileForm.data.path = fileForm.elements.path.value;
         fileForm.data.content_type = fileForm.elements.content_type.value;
         fileForm.data.content = fileForm.elements.content.getValue();
+        fileForm.data.content_vars = fileForm.elements.content_vars.getValue();
 
         // call API
         console.log(fileForm.data);

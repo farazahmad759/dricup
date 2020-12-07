@@ -6,9 +6,9 @@ var logger = require("morgan");
 var cors = require("cors");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
-var filesRouter = require("./db/routes/files");
-var packagesRouter = require("./db/routes/packages");
-var templatesRouter = require("./db/routes/templates");
+var filesRouter = require("./../db/routes/files");
+var packagesRouter = require("./../db/routes/packages");
+var templatesRouter = require("./../db/routes/templates");
 
 var app = express();
 

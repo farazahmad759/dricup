@@ -467,8 +467,12 @@
           //   zip.folder(item.title);
           // });
           res.data.data.forEach((item) => {
-            let _content = generateContent({ knex: true }, item.content);
+            let _content = generateContent(
+              JSON.parse(item.content_vars),
+              item.content
+            );
             zip.file(item.title, _content);
+            console.log(JSON.parse(item.content_vars));
           });
           zip.generateAsync({ type: "blob" }).then(function (content) {
             saveAs(content, "archive.zip");
