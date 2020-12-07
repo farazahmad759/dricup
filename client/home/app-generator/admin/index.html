@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>App Generator - Admin</title>
+    <style type="text/css" media="screen">
+      #content {
+        width: 100%;
+        min-height: 800px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>Generate templates here</div>
+
+    <div>
+      <input id="title" />
+      <textarea id="description"></textarea>
+      <input id="path" />
+      <select id="content_type">
+        <option value="dynamic">Dynamic</option>
+        <option value="static">Static</option>
+      </select>
+      <button onclick="submitFile();">Submit</button>
+      <div id="content"></div>
+    </div>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"
+      integrity="sha512-GZ1RIgZaSc8rnco/8CXfRdCpDxRCphenIiZ2ztLy3XQfCbQUSCuk8IudvNHxkRA3oUg6q0qejgN/qqyG1duv5Q=="
+      crossorigin="anonymous"
+    ></script>
+    <script src="./../../node_modules/axios/dist/axios.js"></script>
+    <script>
+      let editor = ace.edit("content");
+      editor.setTheme("ace/theme/monokai");
+      editor.session.setMode("ace/mode/javascript");
+      function submitFile() {
+        let fileForm = {};
+        fileForm.elements = {};
+        fileForm.data = {};
+
+        // extract form elements
+        fileForm.elements.title = document.getElementById("title");
+        fileForm.elements.description = document.getElementById("description");
+        fileForm.elements.path = document.getElementById("path");
+        fileForm.elements.content_type = document.getElementById(
+          "content_type"
+        );
+        fileForm.elements.content = editor;
+
+        // extract data from elements
+        fileForm.data.title = fileForm.elements.title.value;
+        fileForm.data.description = fileForm.elements.description.value;
+        fileForm.data.path = fileForm.elements.path.value;
+        fileForm.data.content_type = fileForm.elements.content_type.value;
+        fileForm.data.content = fileForm.elements.content.getValue();
+
+        // call API
+        console.log(fileForm.data);
+        axios.post("http://localhost:3000/api/files", fileForm.data);
+      }
+    </script>
+  </body>
+</html>
