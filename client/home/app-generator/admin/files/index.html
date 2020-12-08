@@ -38,27 +38,27 @@
     ></script>
     <script src="./../../node_modules/axios/dist/axios.js"></script>
     <script>
+      let fileForm = {};
+      fileForm.elements = {};
+      fileForm.data = {};
+      fileForm.function = "create";
+      getUrlParams();
+      //
       let editor_content = ace.edit("content");
       editor_content.setTheme("ace/theme/monokai");
       editor_content.session.setMode("ace/mode/javascript");
       let editor_content_vars = ace.edit("content_vars");
       editor_content_vars.setTheme("ace/theme/monokai");
       editor_content_vars.session.setMode("ace/mode/javascript");
+      // extract form elements
+      fileForm.elements.title = document.getElementById("title");
+      fileForm.elements.description = document.getElementById("description");
+      fileForm.elements.path = document.getElementById("path");
+      fileForm.elements.content_type = document.getElementById("content_type");
+      fileForm.elements.content = editor_content;
+      fileForm.elements.content_vars = editor_content_vars;
+      loadFormData();
       function submitFile() {
-        let fileForm = {};
-        fileForm.elements = {};
-        fileForm.data = {};
-
-        // extract form elements
-        fileForm.elements.title = document.getElementById("title");
-        fileForm.elements.description = document.getElementById("description");
-        fileForm.elements.path = document.getElementById("path");
-        fileForm.elements.content_type = document.getElementById(
-          "content_type"
-        );
-        fileForm.elements.content = editor_content;
-        fileForm.elements.content_vars = editor_content_vars;
-
         // extract data from elements
         fileForm.data.title = fileForm.elements.title.value;
         fileForm.data.description = fileForm.elements.description.value;
@@ -68,8 +68,50 @@
         fileForm.data.content_vars = fileForm.elements.content_vars.getValue();
 
         // call API
+        callFileApi(fileForm);
+      }
+
+      function getUrlParams() {
+        var url_string = window.location.href;
+        var url = new URL(url_string);
+        var id = url.searchParams.get("id");
+        if (id) {
+          fileForm.function = "edit";
+          fileForm.fileId = id;
+        }
+      }
+
+      function loadFormData() {
+        if (!fileForm.fileId) {
+          return;
+        }
+        axios
+          .get("http://localhost:3000/api/files/" + fileForm.fileId)
+          .then((res) => {
+            fileForm.data = res.data.data;
+            console.log(fileForm.data);
+            // extract data from elements
+            fileForm.elements.title.value = fileForm.data.title;
+            fileForm.elements.description.value = fileForm.data.description;
+            fileForm.elements.path.value = fileForm.data.path;
+            fileForm.elements.content_type.value = fileForm.data.content_type;
+            fileForm.elements.content.setValue(fileForm.data.content);
+            fileForm.elements.content_vars.setValue(fileForm.data.content_vars);
+          });
+      }
+
+      function callFileApi(fileForm) {
         console.log(fileForm.data);
-        axios.post("http://localhost:3000/api/files", fileForm.data);
+        if (fileForm.function === "create") {
+          axios.post("http://localhost:3000/api/files", fileForm.data);
+          console.log("create");
+        } else {
+          axios.put(
+            "http://localhost:3000/api/files/" + fileForm.fileId,
+            fileForm.data
+          );
+          console.log("edit");
+        }
       }
     </script>
   </body>
