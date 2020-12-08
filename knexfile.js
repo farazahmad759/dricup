@@ -9,10 +9,10 @@ let development_local = {
     password: "",
   },
   migrations: {
-    directory: __dirname + "/db/migrations",
+    directory: __dirname + "/server/db/migrations",
   },
   seeds: {
-    directory: __dirname + "/db/seeds/development",
+    directory: __dirname + "/server/db/seeds/development",
   },
 };
 let development_remote = {
@@ -24,10 +24,10 @@ let development_remote = {
     password: "9c7bddbcfe94c3e9dbb2139fba2fef1123913a8703db7f7d",
   },
   migrations: {
-    directory: __dirname + "/db/migrations",
+    directory: __dirname + "/server/db/migrations",
   },
   seeds: {
-    directory: __dirname + "/db/seeds/development",
+    directory: __dirname + "/server/db/seeds/development",
   },
 };
 
@@ -51,10 +51,10 @@ var knexConfig = {
       tableName: "knex_migrations",
     },
     migrations: {
-      directory: __dirname + "/db/migrations",
+      directory: __dirname + "/server/db/migrations",
     },
     seeds: {
-      directory: __dirname + "/db/seeds/staging",
+      directory: __dirname + "/server/db/seeds/staging",
     },
   },
 
@@ -73,10 +73,10 @@ var knexConfig = {
       tableName: "knex_migrations",
     },
     migrations: {
-      directory: __dirname + "/db/migrations",
+      directory: __dirname + "/server/db/migrations",
     },
     seeds: {
-      directory: __dirname + "/db/seeds/production",
+      directory: __dirname + "/server/db/seeds/production",
     },
   },
 };

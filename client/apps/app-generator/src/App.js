@@ -15,6 +15,9 @@ function App() {
       let files = res.data.data;
       if (files) {
         var zip = new JSZip();
+        zip.folder("server/public/images");
+        zip.folder("server/public/javascripts");
+        zip.folder("client/apps");
         files.forEach((file) => {
           let _content = generateContent(
             JSON.parse(file.content_vars),
@@ -22,9 +25,6 @@ function App() {
           );
           zip.file(file.path, _content);
         });
-        zip.folder("server/public/images");
-        zip.folder("server/public/javascripts");
-        zip.folder("client/apps");
         zip.generateAsync({ type: "blob" }).then(function (content) {
           saveAs(content, "archive.zip");
         });

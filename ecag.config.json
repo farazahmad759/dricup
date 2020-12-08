@@ -1,12 +1,12 @@
 {
   "database_prefix": "",
-  "schemas_path": "db/schemas/",
+  "schemas_path": "server/db/schemas/",
   "knexfile_path": "knexfile.js/",
-  "migrations_path": "db/migrations/",
-  "models_path": "db/models/",
-  "controllers_path": "db/controllers/",
-  "views_path": "db/views/",
-  "routes_path": "db/routes/",
+  "migrations_path": "server/db/migrations/",
+  "models_path": "server/db/models/",
+  "controllers_path": "server/db/controllers/",
+  "views_path": "server/db/views/",
+  "routes_path": "server/db/routes/",
   "YOUR_COMPANY_NAME": "StudyApps",
   "JSON_API_VERSION": "1.0"
 }
